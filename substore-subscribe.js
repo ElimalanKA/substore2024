@@ -1,66 +1,53 @@
-const fs = require('fs');
-const https = require('https');
-const querystring = require('querystring');
+const { type, name } = $arguments;
+const compatible_outbound = {
+  tag: 'COMPATIBLE',
+  type: 'block',
+};
 
-// 解析 URL 参数
-function getArgumentsFromURL(url) {
-  const hashIndex = url.indexOf('#');
-  if (hashIndex === -1) {
-    return {};
+let compatible;
+let config = JSON.parse($files[0]);
+let proxies = await produceArtifact({
+  name,
+  type: /^1$|col/i.test(type) ? 'collection' : 'subscription',
+  platform: 'sing-box',
+  produceType: 'internal',
+});
+
+// console.log(config.outbounds);
+
+config.outbounds.map(i => {
+  if ("outbounds" in i && i.outbounds.includes("{all}") && "filter" in i) {
+    i.outbounds = i.outbounds.filter(item => item != "{all}" && item != "block");
+    const p = getTags(proxies, i.filter[0].keywords[0]);
+    if (i.filter[0].action == "include") {
+      i.outbounds.push(...p);
+    } else if (i.filter[0].action == "exclude") {
+      i.outbounds.push(...(getTags(proxies).filter(item => !p.includes(item))));
+    }
+    delete i.filter;
+  } else if ("outbounds" in i && i.outbounds.includes("{all}") && !("filter" in i)) {
+    i.outbounds = i.outbounds.filter(item => item != "{all}");
+    i.outbounds.push(...getTags(proxies));
   }
-  const queryString = url.substring(hashIndex + 1);
-  return querystring.parse(queryString);
-}
+});
 
-// 下载文件内容
-function downloadFile(url) {
-  return new Promise((resolve, reject) => {
-    https.get(url, (res) => {
-      if (res.statusCode !== 200) {
-        return reject(new Error(`Failed to load file: ${url} - Status: ${res.statusCode}`));
-      }
-      let data = '';
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      res.on('end', () => resolve(data));
-    }).on('error', reject);
-  });
-}
+config.outbounds.push(...proxies);
 
-// 生成配置文件
-async function generateConfig(templateUrl, outputFile, args) {
-  try {
-    // 下载模板
-    console.log('Downloading template...');
-    const templateContent = await downloadFile(templateUrl);
-    const template = JSON.parse(templateContent);
-
-    // 动态修改配置
-    console.log(`Modifying template for name: ${args.name}`);
-    template.outbounds.forEach((outbound) => {
-      if (outbound.tag === 'proxy') {
-        outbound.name = args.name || '默认节点';
-      }
-    });
-
-    // 保存生成的配置文件
-    console.log('Saving configuration...');
-    fs.writeFileSync(outputFile, JSON.stringify(template, null, 2));
-    console.log(`Configuration generated: ${outputFile}`);
-  } catch (error) {
-    console.error('Error generating configuration:', error);
+config.outbounds.forEach(outbound => {
+  if (Array.isArray(outbound.outbounds) && outbound.outbounds.length === 0) {
+    if (!compatible) {
+      config.outbounds.push(compatible_outbound);
+      compatible = true;
+    }
+    outbound.outbounds.push(compatible_outbound.tag);
   }
+});
+
+$content = JSON.stringify(config, null, 2);
+
+function getTags(proxies, regex) {
+  if (regex) {
+    regex = new RegExp(regex);
+  }
+  return (regex ? proxies.filter(p => regex.test(p.tag)) : proxies).map(p => p.tag);
 }
-
-// 主函数
-(async () => {
-  // GitHub URL 示例
-  const scriptUrl = process.env.SCRIPT_URL || 'https://raw.githubusercontent.com/ElimalanKA/substore2024/refs/heads/main/substore-subscribe.js#name=全部节点';
-  const args = getArgumentsFromURL(scriptUrl);
-  const templateUrl = 'https://raw.githubusercontent.com/ElimalanKA/substore2024/refs/heads/main/substore-config-template.json';
-  const outputFile = './sing-box-config.json';
-
-  console.log(`Starting config generation for: ${args.name || '未提供名称'}`);
-  await generateConfig(templateUrl, outputFile, args);
-})();
