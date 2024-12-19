@@ -25,65 +25,17 @@
             "inet6_range": "fc00::/18"
         },
         "servers": [
-            {
-                "address": "https://dns.google/dns-query",
-                "address_resolver": "dns-local",
-                "detour": "proxy",
-                "strategy": "prefer_ipv6",
-                "tag": "dns-remote"
-            },
-            {
-                "address": "https://dns.alidns.com/dns-query",
-                "address_resolver": "dns-local",
-                "detour": "direct",
-                "strategy": "prefer_ipv6",
-                "tag": "dns-direct"
-            },
-            {
-                "address": "rcode://success",
-                "tag": "dns-block"
-            },
-            {
-                "address": "fakeip",
-                "tag": "dns-fake"
-            },
-            {
-                "address": "223.5.5.5",
-                "detour": "direct",
-                "tag": "dns-local"
-            }
+            {"address": "https://dns.google/dns-query", "address_resolver": "dns-local", "detour": "proxy", "strategy": "prefer_ipv6", "tag": "dns-remote"},
+            {"address": "https://dns.alidns.com/dns-query","address_resolver": "dns-local", "detour": "direct", "strategy": "prefer_ipv6", "tag": "dns-direct"},
+            {"address": "rcode://success", "tag": "dns-block"},
+            {"address": "fakeip", "tag": "dns-fake"},
+            {"address": "223.5.5.5", "detour": "direct", "tag": "dns-local"}
         ],
         "rules": [
-            {
-                "outbound": "any",
-                "server": "dns-direct"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
-                "server": "dns_fake"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "query_type": [
-                    "CNAME"
-                ],
-                "server": "dns-remote"
-            },
-            {
-                "query_type": [
-                    "A",
-                    "AAAA",
-                    "CNAME"
-                ],
-                "invert": true,
-                "server": "dns_refused",
-                "action": "route-options",
-                "disable_cache": true
-            }
+            {"outbound": "any", "server": "dns-direct"},
+            {"rule_set": "geosite-geolocation-!cn", "query_type": ["A","AAAA"],"server": "dns_fake"},
+            {"rule_set": "geosite-geolocation-!cn", "query_type": ["CNAME"],"server": "dns-remote"},
+            {"query_type": ["A", "AAAA", "CNAME"],"invert": true,"server": "dns_refused","action": "route-options","disable_cache": true}
         ],
         "final": "dns-direct",
         "independent_cache": true
