@@ -25,17 +25,65 @@
             "inet6_range": "fc00::/18"
         },
         "servers": [
-            {"address": "https://dns.google/dns-query", "address_resolver": "dns-local", "detour": "proxy", "strategy": "prefer_ipv6", "tag": "dns-remote"},
-            {"address": "https://dns.alidns.com/dns-query","address_resolver": "dns-local", "detour": "direct", "strategy": "prefer_ipv6", "tag": "dns-direct"},
-            {"address": "rcode://success", "tag": "dns-block"},
-            {"address": "fakeip", "tag": "dns-fake"},
-            {"address": "223.5.5.5", "detour": "direct", "tag": "dns-local"}
+            {
+                "address": "https://dns.google/dns-query",
+                "address_resolver": "dns-local",
+                "detour": "proxy",
+                "strategy": "prefer_ipv6",
+                "tag": "dns-remote"
+            },
+            {
+                "address": "https://dns.alidns.com/dns-query",
+                "address_resolver": "dns-local",
+                "detour": "direct",
+                "strategy": "prefer_ipv6",
+                "tag": "dns-direct"
+            },
+            {
+                "address": "rcode://success",
+                "tag": "dns-block"
+            },
+            {
+                "address": "fakeip",
+                "tag": "dns-fake"
+            },
+            {
+                "address": "223.5.5.5",
+                "detour": "direct",
+                "tag": "dns-local"
+            }
         ],
         "rules": [
-            {"outbound": "any", "server": "dns-direct"},
-            {"rule_set": "geosite-geolocation-!cn", "query_type": ["A","AAAA"],"server": "dns_fake"},
-            {"rule_set": "geosite-geolocation-!cn", "query_type": ["CNAME"],"server": "dns-remote"},
-            {"query_type": ["A", "AAAA", "CNAME"],"invert": true,"server": "dns_refused","action": "route-options","disable_cache": true}
+            {
+                "outbound": "any",
+                "server": "dns-direct"
+            },
+            {
+                "rule_set": "geosite-geolocation-!cn",
+                "query_type": [
+                    "A",
+                    "AAAA"
+                ],
+                "server": "dns_fake"
+            },
+            {
+                "rule_set": "geosite-geolocation-!cn",
+                "query_type": [
+                    "CNAME"
+                ],
+                "server": "dns-remote"
+            },
+            {
+                "query_type": [
+                    "A",
+                    "AAAA",
+                    "CNAME"
+                ],
+                "invert": true,
+                "server": "dns_refused",
+                "action": "route-options",
+                "disable_cache": true
+            }
         ],
         "final": "dns-direct",
         "independent_cache": true
@@ -58,37 +106,164 @@
         "auto_detect_interface": true,
         "final": "proxy",
         "rules": [
-            {"inbound": "tun-in", "action": "sniff"},
-            {"protocol": "dns", "action": "hijack-dns"},
-            {"process_name": ["xray.exe", "hysteria.exe"],"outbound": "direct"},
-            {"port": 853, "network": "tcp","action": "reject"},
-            {"port": 443, "network": "udp","action": "reject"},
-            {"rule_set": "geosite-geolocation-!cn", "outbound": "proxy"},
-            {"rule_set": "geoip-cn", "outbound": "direct"},
-            {"ip_is_private": true,  "outbound": "direct"},
-            {"rule_set": ["geoip-apple", "geosite-apple"], "outbound": "Apple"},
-            {"rule_set": "geosite-youtube", "outbound": "Youtube"},
-            {"rule_set": ["geosite-google",  "geoip-google", "geosite-github"],"outbound": "Google"},
-            {"rule_set": "geoip-cloudflare", "outbound": "Cloudflare"},
-            {"rule_set": "geosite-aws", "outbound": "Aws"},
-            {"rule_set": "geosite-azure","outbound": "Azure"},
-            {"rule_set": "geosite-amazon", "outbound": "Amazon"},
-            {"rule_set": "geosite-disney", "outbound": "Disney+"},
-            {"rule_set": ["geoip-netflix", "geosite-netflix"], "outbound": "Netflix"},
-            {"rule_set": ["geoip-twitter", "geosite-twitter"], "outbound": "Twitter"},
-            {"rule_set": ["geosite-facebook", "geoip-facebook"], "outbound": "Facebook"},
-            {"rule_set": "geosite-openai", "outbound": "OpenAI"},
-            {"rule_set": "geosite-anthropic", "outbound": "Anthropic"},
-            {"rule_set": ["geosite-microsoft", "geosite-bing", "geosite-onedrive"], "outbound": "Microsoft"},
-            {"rule_set": "geoip-telegram", "outbound": "Telegram"},
-            {"rule_set": "geosite-tiktok", "outbound": "TikTok"},
-            {"rule_set": "geosite-spotify", "outbound": "Spotify"},
-            {"rule_set": ["geosite-category-games", "geosite-dmm"], "outbound": "Games"},
-            {"rule_set": "geosite-category-ads-all", "outbound": "Category-ads-all"},
-            {"rule_set": "geosite-adguard", "outbound": "Adguard"},
-            {"rule_set": "geosite-bahamut", "outbound": "Bahamut"},
-            {"rule_set": ["geosite-hbo", "geosite-primevideo"], "outbound": "steam"},
-            {"rule_set": ["geoip-cn", "geosite-geolocation-cn"], "outbound": "direct"}
+            {
+                "inbound": "tun-in",
+                "action": "sniff"
+            },
+            {
+                "protocol": "dns",
+                "action": "hijack-dns"
+            },
+            {
+                "process_name": [
+                    "xray.exe",
+                    "hysteria.exe"
+                ],
+                "outbound": "direct"
+            },
+            {
+                "port": 853,
+                "network": "tcp",
+                "action": "reject"
+            },
+            {
+                "port": 443,
+                "network": "udp",
+                "action": "reject"
+            },
+            {
+                "rule_set": "geosite-geolocation-!cn",
+                "outbound": "proxy"
+            },
+            {
+                "rule_set": "geoip-cn",
+                "outbound": "direct"
+            },
+            {
+                "ip_is_private": true,
+                "outbound": "direct"
+            },
+            {
+                "rule_set": [
+                    "geoip-apple",
+                    "geosite-apple"
+                ],
+                "outbound": "Apple"
+            },
+            {
+                "rule_set": "geosite-youtube",
+                "outbound": "Youtube"
+            },
+            {
+                "rule_set": [
+                    "geosite-google",
+                    "geoip-google",
+                    "geosite-github"
+                ],
+                "outbound": "Google"
+            },
+            {
+                "rule_set": "geoip-cloudflare",
+                "outbound": "Cloudflare"
+            },
+            {
+                "rule_set": "geosite-aws",
+                "outbound": "Aws"
+            },
+            {
+                "rule_set": "geosite-azure",
+                "outbound": "Azure"
+            },
+            {
+                "rule_set": "geosite-amazon",
+                "outbound": "Amazon"
+            },
+            {
+                "rule_set": "geosite-disney",
+                "outbound": "Disney+"
+            },
+            {
+                "rule_set": [
+                    "geoip-netflix",
+                    "geosite-netflix"
+                ],
+                "outbound": "Netflix"
+            },
+            {
+                "rule_set": [
+                    "geoip-twitter",
+                    "geosite-twitter"
+                ],
+                "outbound": "Twitter"
+            },
+            {
+                "rule_set": [
+                    "geosite-facebook",
+                    "geoip-facebook"
+                ],
+                "outbound": "Facebook"
+            },
+            {
+                "rule_set": "geosite-openai",
+                "outbound": "OpenAI"
+            },
+            {
+                "rule_set": "geosite-anthropic",
+                "outbound": "Anthropic"
+            },
+            {
+                "rule_set": [
+                    "geosite-microsoft",
+                    "geosite-bing",
+                    "geosite-onedrive"
+                ],
+                "outbound": "Microsoft"
+            },
+            {
+                "rule_set": "geoip-telegram",
+                "outbound": "Telegram"
+            },
+            {
+                "rule_set": "geosite-tiktok",
+                "outbound": "TikTok"
+            },
+            {
+                "rule_set": "geosite-spotify",
+                "outbound": "Spotify"
+            },
+            {
+                "rule_set": [
+                    "geosite-category-games",
+                    "geosite-dmm"
+                ],
+                "outbound": "Games"
+            },
+            {
+                "rule_set": "geosite-category-ads-all",
+                "outbound": "Category-ads-all"
+            },
+            {
+                "rule_set": "geosite-adguard",
+                "outbound": "Adguard"
+            },
+            {
+                "rule_set": "geosite-bahamut",
+                "outbound": "Bahamut"
+            },
+            {
+                "rule_set": [
+                    "geosite-hbo",
+                    "geosite-primevideo"
+                ],
+                "outbound": "steam"
+            },
+            {
+                "rule_set": [
+                    "geoip-cn",
+                    "geosite-geolocation-cn"
+                ],
+                "outbound": "direct"
+            }
         ],
         "rule_set": [
             {
@@ -348,17 +523,16 @@
             "type": "selector",
             "outbounds": [
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "ipV6",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "interrupt_exist_connections": true,
@@ -368,7 +542,7 @@
             "tag": "ByteTW",
             "type": "urltest",
             "outbounds": [
-                "{air-ByteTW}"
+                "{ByteTW}"
             ],
             "filter": [
                 {
@@ -385,7 +559,7 @@
             "tag": "Cream[HK]",
             "type": "urltest",
             "outbounds": [
-                "{air-Cream}"
+                "{cream}"
             ],
             "filter": [
                 {
@@ -402,7 +576,7 @@
             "tag": "Cream[JP]",
             "type": "urltest",
             "outbounds": [
-                "{air-Cream}"
+                "{cream}"
             ],
             "filter": [
                 {
@@ -416,11 +590,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "US[dual-stack]",
+            "tag": "US dual-stack",
             "type": "selector",
             "outbounds": [
-                "{air-Citruslab}",
-                "{air-Xier}"
+                "{citrus}",
+                "{XierV6}"
             ],
             "filter": [
                 {
@@ -433,12 +607,12 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "TW[dual-stack]",
+            "tag": "TW dual-stack",
             "type": "selector",
             "outbounds": [
-                "{air-ByteTW}",
-                "{air-Citruslab}",
-                "{air-Xier}"
+                "{ByteTW}",
+                "{citrus}",
+                "{XierV6}"
             ],
             "filter": [
                 {
@@ -451,11 +625,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "SG[dual-stack]",
+            "tag": "SG dual-stack",
             "type": "selector",
             "outbounds": [
-                "{air-Citruslab}",
-                "{air-Xier}"
+                "{citrus}",
+                "{XierV6}"
             ],
             "filter": [
                 {
@@ -468,11 +642,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "JP[dual-stack]",
+            "tag": "JP dual-stack",
             "type": "selector",
             "outbounds": [
-                "{air-Citruslab}",
-                "{air-Xier}"
+                "{citrus}",
+                "{XierV6}"
             ],
             "filter": [
                 {
@@ -485,11 +659,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "HK[dual-stack]",
+            "tag": "HK dual-stack",
             "type": "selector",
             "outbounds": [
-                "{air-Citruslab}",
-                "{air-Xier}"
+                "{citrus}",
+                "{XierV6}"
             ],
             "filter": [
                 {
@@ -505,7 +679,7 @@
             "tag": "ipV6",
             "type": "selector",
             "outbounds": [
-                "{air-Xier}"
+                "{XierV6}"
             ],
             "filter": [
                 {
@@ -518,12 +692,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "US[IPv4]",
+            "tag": "US IPv4",
             "type": "selector",
             "outbounds": [
-                "{air-Cream}",
-                "{air-Amy}",
-                "{air-ZgoUS}"
+                "{cream}",
+                "{amy}"
             ],
             "filter": [
                 {
@@ -536,11 +709,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "TW[IPv4]",
+            "tag": " ",
             "type": "selector",
             "outbounds": [
-                "{air-Cream}",
-                "{air-Amy}"
+                "{cream}",
+                "{amy}"
             ],
             "filter": [
                 {
@@ -553,10 +726,10 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "JP[IPv4]",
+            "tag": "JP IPv4",
             "type": "selector",
             "outbounds": [
-                "{air-Amy}"
+                "{amy}"
             ],
             "filter": [
                 {
@@ -569,11 +742,11 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "SG[IPv4]",
+            "tag": "SG IPv4",
             "type": "selector",
             "outbounds": [
-                "{air-Cream}",
-                "{air-Amy}"
+                "{cream}",
+                "{amy}"
             ],
             "filter": [
                 {
@@ -586,10 +759,10 @@
             "interrupt_exist_connections": true
         },
         {
-            "tag": "HK[IPv4]",
+            "tag": "HK IPv4",
             "type": "selector",
             "outbounds": [
-                "{air-Amy}"
+                "{amy}"
             ],
             "filter": [
                 {
@@ -607,34 +780,32 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "appleCN",
             "type": "selector",
             "outbounds": [
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "direct"
@@ -645,19 +816,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "BiliBili",
@@ -665,16 +835,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "direct"
@@ -685,16 +854,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "proxy"
@@ -705,16 +873,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "proxy"
@@ -725,19 +892,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Azure",
@@ -745,19 +911,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Amazon",
@@ -765,19 +930,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Disney+",
@@ -785,16 +949,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "proxy"
@@ -805,19 +968,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Netflix",
@@ -825,19 +987,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "TW[dual-stack]"
+            "default": "TW dual-stack"
         },
         {
             "tag": "Twitter",
@@ -845,16 +1006,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "ByteTW"
@@ -865,16 +1025,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "ByteTW"
@@ -885,19 +1044,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Anthropic",
@@ -905,19 +1063,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Microsoft",
@@ -925,19 +1082,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Telegram",
@@ -945,16 +1101,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "ByteTW"
@@ -965,19 +1120,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "JP[dual-stack]"
+            "default": "JP dual-stack"
         },
         {
             "tag": "Spotify",
@@ -985,19 +1139,18 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
-            "default": "US[dual-stack]"
+            "default": "US dual-stack"
         },
         {
             "tag": "Games",
@@ -1005,16 +1158,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "direct"
@@ -1041,16 +1193,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ]
         },
@@ -1060,16 +1211,15 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "direct"
@@ -1080,22 +1230,21 @@
             "outbounds": [
                 "proxy",
                 "ByteTW",
-                "US[dual-stack]",
-                "TW[dual-stack]",
-                "SG[dual-stack]",
-                "JP[dual-stack]",
-                "HK[dual-stack]",
-                "US[IPv4]",
-                "TW[IPv4]",
-                "JP[IPv4]",
-                "SG[IPv4]",
-                "Other[IPv4/IPv6]",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
                 "direct"
             ],
             "default": "direct"
         },
         {
-            "tag": "Other[IPv4/IPv6]",
+            "tag": "Other IPv4/IPv6",
             "type": "selector",
             "outbounds": [
                 "{all}"
