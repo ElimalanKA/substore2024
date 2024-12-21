@@ -604,7 +604,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru US|dual-stack xierV6 US"
+                        "dual-stack citrus US|dual-stack xierV6 US"
                     ]
                 }
             ],
@@ -622,7 +622,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru TW|dual-stack xierV6 TW|dual-stack byte TW"
+                        "dual-stack citrus TW|dual-stack xierV6 TW|dual-stack byte TW"
                     ]
                 }
             ],
@@ -640,7 +640,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru SG|dual-stack xierV6 SG"
+                        "dual-stack citrus SG|dual-stack xierV6 SG"
                     ]
                 }
             ],
@@ -658,7 +658,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru JP|dual-stack xierV6 JP"
+                        "dual-stack citrus JP|dual-stack xierV6 JP"
                     ]
                 }
             ],
@@ -676,7 +676,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru HK|dual-stack xierV6 HK"
+                        "dual-stack citrus HK|dual-stack xierV6 HK"
                     ]
                 }
             ],
