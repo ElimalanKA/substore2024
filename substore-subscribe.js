@@ -16,8 +16,13 @@ let proxies = await produceArtifact({
 // console.log(config.outbounds);
 
 config.outbounds.map(i => {
-  if ("outbounds" in i && i.outbounds.includes("{all}") && "filter" in i) {
-    i.outbounds = i.outbounds.filter(item => item != "{all}" && item != "block");
+  if ("outbounds" in i &&
+      i.outbounds.includes("{all}")
+      ) {
+    const allValues = ["jp", "tw", "sg", "us", "dual-stack"]; // 模拟所有节点
+    i.outbounds = i.outbounds.filter(item => item != "{all}" );
+    i.outbounds.push(...allValues); // 替换 {all} 为具体的节点
+    
     const p = getTags(proxies, i.filter[0].keywords[0]);
     if (i.filter[0].action == "include") {
       i.outbounds.push(...p);
