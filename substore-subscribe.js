@@ -16,24 +16,18 @@ let proxies = await produceArtifact({
 // console.log(config.outbounds);
 
 config.outbounds.map(i => {
-  if ("outbounds" in i && i.outbounds.includes("{all}")) {
-    // 模拟所有节点
-    const allValues = ["jp", "tw", "sg", "us", "dual-stack"]; 
-
-    // 替换 {all}
-    i.outbounds = i.outbounds.filter(item => item != "{all}");
-    i.outbounds.push(...allValues);
-
-    // 如果存在 filter，处理 include/exclude
-    if ("filter" in i) {
-      const p = getTags(proxies, i.filter[0].keywords[0]);
-      if (i.filter[0].action == "include") {
-        i.outbounds.push(...p);
-      } else if (i.filter[0].action == "exclude") {
-        i.outbounds.push(...(getTags(proxies).filter(item => !p.includes(item))));
-      }
-      delete i.filter;
+  if ("outbounds" in i && i.outbounds.includes("{all}") && "filter" in i) {
+    i.outbounds = i.outbounds.filter(item => item != "{all}" && item != "block");
+    const p = getTags(proxies, i.filter[0].keywords[0]);
+    if (i.filter[0].action == "include") {
+      i.outbounds.push(...p);
+    } else if (i.filter[0].action == "exclude") {
+      i.outbounds.push(...(getTags(proxies).filter(item => !p.includes(item))));
     }
+    delete i.filter;
+  } else if ("outbounds" in i && i.outbounds.includes("{all}") && !("filter" in i)) {
+    i.outbounds = i.outbounds.filter(item => item != "{all}");
+    i.outbounds.push(...getTags(proxies));
   }
 });
 
