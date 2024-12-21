@@ -548,7 +548,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "bytetw"
+                        "byte TW"
                     ]
                 }
             ],
@@ -565,7 +565,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "🇭🇰|HK|hk|香港|港|HongKong"
+                        "cream 🇭🇰|cream HK|cream hk"
                     ]
                 }
             ],
@@ -582,7 +582,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "🇯🇵|JP|jp|日本|日|Japan"
+                        "cream 🇯🇵|cream JP|cream jp"
                     ]
                 }
             ],
@@ -593,14 +593,13 @@
             "tag": "US dual-stack",
             "type": "selector",
             "outbounds": [
-                "{citrus}",
-                "{XierV6}"
+                "{all}"                
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇺🇸|US|us|美国|美|United States"
+                        "dual-stack citru 🇺🇸|dual-stack citru US|dual-stack citru us|dual-stack xierV6 🇺🇸|dual-stack xierV6 US|dual-stack xierV6 us"
                     ]
                 }
             ],
@@ -610,15 +609,13 @@
             "tag": "TW dual-stack",
             "type": "selector",
             "outbounds": [
-                "{ByteTW}",
-                "{citrus}",
-                "{XierV6}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"
+                        "dual-stack citru 🇹🇼|dual-stack citru TW|dual-stack citru tw|dual-stack xierV6 🇹🇼|dual-stack xierV6 TW|dual-stack xierV6 tw|dual-stack byte 🇹🇼|dual-stack byte TW|dual-stack byte tw"
                     ]
                 }
             ],
@@ -628,14 +625,13 @@
             "tag": "SG dual-stack",
             "type": "selector",
             "outbounds": [
-                "{citrus}",
-                "{XierV6}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇸🇬|SG|sg|新加坡|狮|Singapore"
+                        "dual-stack citru 🇸🇬| dual-stack citru SG|dual-stack citru sg|dual-stack xierV6 🇸🇬|dual-stack xierV6 SG|dual-stack xierV6 sg"
                     ]
                 }
             ],
@@ -645,14 +641,13 @@
             "tag": "JP dual-stack",
             "type": "selector",
             "outbounds": [
-                "{citrus}",
-                "{XierV6}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇯🇵|JP|jp|日本|日|Japan"
+                        "dual-stack citru 🇯🇵|dual-stack citru JP|dual-stack citru jp|dual-stack xierV6 🇯🇵|dual-stack xierV6 JP|dual-stack xierV6 jp"
                     ]
                 }
             ],
@@ -662,14 +657,13 @@
             "tag": "HK dual-stack",
             "type": "selector",
             "outbounds": [
-                "{citrus}",
-                "{XierV6}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇭🇰|HK|hk|香港|港|HongKong"
+                        "dual-stack citru 🇭🇰|dual-stack citru HK|dual-stack citru hk|dual-stack xierV6 🇭🇰|dual-stack xierV6 HK|dual-stack xierV6 hk|"
                     ]
                 }
             ],
@@ -679,13 +673,13 @@
             "tag": "ipV6",
             "type": "selector",
             "outbounds": [
-                "{XierV6}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "ᵛ⁶"
+                        "dual-stack xierV6"
                     ]
                 }
             ],
@@ -695,31 +689,29 @@
             "tag": "US IPv4",
             "type": "selector",
             "outbounds": [
-                "{cream}",
-                "{amy}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇺🇸|US|us|美国|美|United States"
+                        "IPV4 amy 🇺🇸|IPV4 amy US|IPV4 amy us|IPV4 cream 🇺🇸|IPV4 ceram US|IPV4 cream us"
                     ]
                 }
             ],
             "interrupt_exist_connections": true
         },
         {
-            "tag": " ",
+            "tag": "TW IPv4",
             "type": "selector",
             "outbounds": [
-                "{cream}",
-                "{amy}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"
+                        "IPV4 amy 🇹🇼|IPV4 amy TW|IPV4 amy tw|IPV4 cream 🇹🇼|IPV4 cream TW|IPV4 cream tw"
                     ]
                 }
             ],
@@ -729,13 +721,13 @@
             "tag": "JP IPv4",
             "type": "selector",
             "outbounds": [
-                "{amy}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇯🇵|JP|jp|日本|日|Japan"
+                        "IPV4 amy 🇯🇵|IPV4 amy JP|IPV4 amy jp|IPV4 cream 🇯🇵|IPV4 cream JP|IPV4 cream jp"
                     ]
                 }
             ],
@@ -745,14 +737,13 @@
             "tag": "SG IPv4",
             "type": "selector",
             "outbounds": [
-                "{cream}",
-                "{amy}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇸🇬|SG|sg|新加坡|狮|Singapore"
+                        "IPV4 amy 🇸🇬|IPV4 amy SG|IPV4 amy sg|IPV4 cream 🇸🇬|IPV4 cream SG|IPV4 cream sg"
                     ]
                 }
             ],
@@ -762,13 +753,13 @@
             "tag": "HK IPv4",
             "type": "selector",
             "outbounds": [
-                "{amy}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇭🇰|HK|hk|香港|港|HongKong"
+                        "IPV4 amy 🇭🇰|IPV4 amy HK|IPV4 amy hk|IPV4 cream 🇭🇰|IPV4 cream HK|IPV4 cream hk"
                     ]
                 }
             ],
@@ -803,6 +794,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
