@@ -604,7 +604,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru 🇺🇸|dual-stack citru US|dual-stack citru us|dual-stack xierV6 🇺🇸|dual-stack xierV6 US|dual-stack xierV6 us"
+                        "dual-stack citru US|dual-stack xierV6 US"
                     ]
                 }
             ],
@@ -622,7 +622,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru 🇹🇼|dual-stack citru TW|dual-stack citru tw|dual-stack xierV6 🇹🇼|dual-stack xierV6 TW|dual-stack xierV6 tw|dual-stack byte 🇹🇼|dual-stack byte TW|dual-stack byte tw"
+                        "dual-stack citru TW|dual-stack xierV6 TW|dual-stack byte TW"
                     ]
                 }
             ],
@@ -640,7 +640,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru 🇸🇬| dual-stack citru SG|dual-stack citru sg|dual-stack xierV6 🇸🇬|dual-stack xierV6 SG|dual-stack xierV6 sg"
+                        "dual-stack citru SG|dual-stack xierV6 SG"
                     ]
                 }
             ],
@@ -658,7 +658,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru 🇯🇵|dual-stack citru JP|dual-stack citru jp|dual-stack xierV6 🇯🇵|dual-stack xierV6 JP|dual-stack xierV6 jp"
+                        "dual-stack citru JP|dual-stack xierV6 JP"
                     ]
                 }
             ],
@@ -676,7 +676,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "dual-stack citru 🇭🇰|dual-stack citru HK|dual-stack citru hk|dual-stack xierV6 🇭🇰|dual-stack xierV6 HK|dual-stack xierV6 hk"
+                        "dual-stack citru HK|dual-stack xierV6 HK"
                     ]
                 }
             ],
@@ -712,7 +712,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "IPV4 amy 🇺🇸|IPV4 amy US|IPV4 amy us|IPV4 cream 🇺🇸|IPV4 ceram US|IPV4 cream us"
+                        "IPV4 amy US|IPV4 cream US"
                     ]
                 }
             ],
@@ -730,7 +730,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "IPV4 amy 🇹🇼|IPV4 amy TW|IPV4 amy tw|IPV4 cream 🇹🇼|IPV4 cream TW|IPV4 cream tw"
+                        "IPV4 amy TW|IPV4 cream TW"
                     ]
                 }
             ],
@@ -748,7 +748,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "IPV4 amy 🇯🇵|IPV4 amy JP|IPV4 amy jp|IPV4 cream 🇯🇵|IPV4 cream JP|IPV4 cream jp"
+                        "IPV4 amy JP|IPV4 cream JP"
                     ]
                 }
             ],
@@ -766,7 +766,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "IPV4 amy 🇸🇬|IPV4 amy SG|IPV4 amy sg|IPV4 cream 🇸🇬|IPV4 cream SG|IPV4 cream sg"
+                        "IPV4 amy SG|IPV4 cream SG"
                     ]
                 }
             ],
@@ -784,7 +784,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "IPV4 amy 🇭🇰|IPV4 amy HK|IPV4 amy hk|IPV4 cream 🇭🇰|IPV4 cream HK|IPV4 cream hk"
+                        "IPV4 amy HK|IPV4 cream HK"
                     ]
                 }
             ],
