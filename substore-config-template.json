@@ -534,8 +534,10 @@
                 "SG IPv4",
                 "Other IPv4/IPv6",
                 "direct"
-            ],
-            "interrupt_exist_connections": true,
+            ],            
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50,
             "default": "ByteTW"
         },
         {
@@ -552,8 +554,9 @@
                     ]
                 }
             ],
-            "url": "https://www.gstatic.com/generate_204",
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "Cream[HK]",
@@ -569,8 +572,9 @@
                     ]
                 }
             ],
-            "url": "https://www.gstatic.com/generate_204",
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50": true
         },
         {
             "tag": "Cream[JP]",
@@ -586,12 +590,13 @@
                     ]
                 }
             ],
-            "url": "https://www.gstatic.com/generate_204",
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "US dual-stack",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"                
             ],
@@ -603,11 +608,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "TW dual-stack",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -619,11 +626,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "SG dual-stack",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -635,11 +644,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "JP dual-stack",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -651,11 +662,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "HK dual-stack",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -667,11 +680,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "ipV6",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -683,11 +698,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "US IPv4",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -699,11 +716,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "TW IPv4",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -715,11 +734,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "JP IPv4",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -731,11 +752,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "SG IPv4",
-            "type": "selector",
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
@@ -747,11 +770,13 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "HK IPv4",
-            "type": "selector",
+            "type": "urltest"
             "outbounds": [
                 "{all}"
             ],
@@ -763,7 +788,9 @@
                     ]
                 }
             ],
-            "interrupt_exist_connections": true
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
         },
         {
             "tag": "Apple",
@@ -777,6 +804,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -814,6 +842,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -833,6 +862,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -852,6 +882,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -871,6 +902,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -909,6 +941,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -928,6 +961,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -947,6 +981,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -966,6 +1001,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1004,6 +1040,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1023,6 +1060,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1042,6 +1080,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1061,6 +1100,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1081,6 +1121,7 @@
                 "HK dual-stack",
                 "US IPv4",
                 "JP IPv4",
+                "TW IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
                 "direct"
@@ -1099,6 +1140,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1118,6 +1160,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1137,6 +1180,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1156,6 +1200,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1191,6 +1236,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1209,6 +1255,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
@@ -1228,6 +1275,7 @@
                 "JP dual-stack",
                 "HK dual-stack",
                 "US IPv4",
+                "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
