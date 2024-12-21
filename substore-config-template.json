@@ -542,7 +542,7 @@
             "tag": "ByteTW",
             "type": "urltest",
             "outbounds": [
-                "{ByteTW}"
+                "{all}"
             ],
             "filter": [
                 {
@@ -559,7 +559,7 @@
             "tag": "Cream[HK]",
             "type": "urltest",
             "outbounds": [
-                "{cream}"
+                "{all}"
             ],
             "filter": [
                 {
@@ -576,7 +576,7 @@
             "tag": "Cream[JP]",
             "type": "urltest",
             "outbounds": [
-                "{cream}"
+                "{all}"
             ],
             "filter": [
                 {
