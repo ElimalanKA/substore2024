@@ -519,6 +519,10 @@
             "type": "direct"
         },
         {
+            "tag": "block",
+            "type": "block"
+        },
+        {
             "tag": "proxy",
             "type": "selector",
             "outbounds": [
@@ -535,9 +539,6 @@
                 "Other IPv4/IPv6",
                 "direct"
             ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50,
             "default": "ByteTW"
         },
         {
