@@ -549,6 +549,10 @@
             "type": "direct"
         },
         {
+            "tag": "block",
+            "type": "block"
+        },
+        {
             "tag": "proxy",
             "type": "selector",
             "outbounds": [
