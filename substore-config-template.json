@@ -542,13 +542,13 @@
             "tag": "ByteTW",
             "type": "urltest",
             "outbounds": [
-                "{ByteTW}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "bytetw"
+                        "byte TW"
                     ]
                 }
             ],
@@ -559,13 +559,13 @@
             "tag": "Cream[HK]",
             "type": "urltest",
             "outbounds": [
-                "{cream}"
+                "{all}"
             ],
             "filter": [
                 {
                     "action": "include",
                     "keywords": [
-                        "🇭🇰|HK|hk|香港|港|HongKong"
+                        "cream|🇭🇰|HK|hk|香港|港|HongKong"
                     ]
                 }
             ],
