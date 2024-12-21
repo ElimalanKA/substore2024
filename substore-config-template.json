@@ -534,7 +534,7 @@
                 "SG IPv4",
                 "Other IPv4/IPv6",
                 "direct"
-            ],            
+            ],
             "url": "https://www.youtube.com/generate_204",
             "interval": "3m",
             "tolerance": 50,
@@ -574,8 +574,8 @@
             ],
             "url": "https://www.youtube.com/generate_204",
             "interval": "3m",
-            "tolerance": 50": true
-        },
+            "tolerance": 50
+        },        
         {
             "tag": "Cream[JP]",
             "type": "urltest",
@@ -598,7 +598,7 @@
             "tag": "US dual-stack",
             "type": "urltest",
             "outbounds": [
-                "{all}"                
+                "{all}"
             ],
             "filter": [
                 {
@@ -776,7 +776,7 @@
         },
         {
             "tag": "HK IPv4",
-            "type": "urltest"
+            "type": "urltest",
             "outbounds": [
                 "{all}"
             ],
