@@ -566,6 +566,7 @@
                 "TW IPv4",
                 "JP IPv4",
                 "SG IPv4",
+                "ipV6",
                 "Other IPv4/IPv6",
                 "direct"
             ],
@@ -599,7 +600,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "amy HK|amy JP|amy SG"
+                        "amy HK|amy JP|amy SG|amy TW"
                     ]
                 }
             ],
@@ -617,7 +618,7 @@
                 {
                     "action": "include",
                     "keywords": [
-                        "cream Hk|cream JP|cream SG"
+                        "cream Hk|cream JP|cream SG|cream KR|cream TW"
                     ]
                 }
             ],
@@ -824,84 +825,6 @@
             "tolerance": 50
         },
         {
-            "tag": "Apple",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "appleCN",
-            "type": "selector",
-            "outbounds": [
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "Youtube",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "BiliBili",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "direct"
-        },
-        {
             "tag": "Google",
             "type": "selector",
             "outbounds": [
@@ -940,6 +863,165 @@
                 "direct"
             ],
             "default": "proxy"
+        },
+        {
+            "tag": "Apple",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Netflix",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "TW dual-stack"
+        },
+        {
+            "tag": "OpenAI",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Anthropic",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Microsoft",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "TW IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Youtube",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Twitter",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "ByteTW"
+        },
+        {
+            "tag": "Facebook",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "ByteTW"
         },
         {
             "tag": "Aws",
@@ -1001,6 +1083,35 @@
             "default": "US dual-stack"
         },
         {
+            "tag": "BiliBili",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "appleCN",
+            "type": "selector",
+            "outbounds": [
+                "direct",
+                "block"
+            ],
+            "default": "direct"
+        },
+        {
             "tag": "Disney+",
             "type": "selector",
             "outbounds": [
@@ -1034,125 +1145,6 @@
                 "US IPv4",
                 "TW IPv4",
                 "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Netflix",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "TW dual-stack"
-        },
-        {
-            "tag": "Twitter",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "ByteTW"
-        },
-        {
-            "tag": "Facebook",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "ByteTW"
-        },
-        {
-            "tag": "OpenAI",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Anthropic",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Microsoft",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "JP IPv4",
-                "TW IPv4",
                 "SG IPv4",
                 "Other IPv4/IPv6",
                 "direct"
