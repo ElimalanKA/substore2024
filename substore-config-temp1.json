@@ -1,0 +1,1343 @@
+{
+    "log": {
+        "disabled": false,
+        "level": "debug",
+        "timestamp": true
+    },
+    "experimental": {
+        "clash_api": {
+            "external_controller": "192.168.2.248:9090",
+            "external_ui": "/etc/sing-box/ui",
+            "external_ui_download_url": "",
+            "external_ui_download_detour": "",
+            "default_mode": "rule"
+        },
+        "cache_file": {
+            "enabled": true,
+            "path": "/etc/sing-box/cache.db",
+            "store_fakeip": true
+        }
+    },
+    "dns": {
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
+        "servers": [
+            {
+                "address": "https://dns.google/dns-query",
+                "address_resolver": "dns-local",
+                "detour": "proxy",
+                "tag": "dns-remote"
+            },
+            {
+                "address": "https://dns.alidns.com/dns-query",
+                "address_resolver": "dns-local",
+                "detour": "direct",
+                "tag": "dns-direct"
+            },
+            {
+                "address": "rcode://success",
+                "tag": "dns-block"
+            },
+            {
+                "tag": "dns_refused",
+                "address": "rcode://refused"
+            },
+            {
+                "address": "fakeip",
+                "tag": "dns-fake"
+            },
+            {
+                "address": "192.168.2.1",
+                "detour": "direct",
+                "tag": "dns-local"
+            }
+        ],
+        "rules": [
+            {
+                "rule_set": [
+                    "geosite-category-ads-all"
+                ],
+                "action": "reject",
+                "method": "default",
+                "no_drop": false
+            },
+            {
+                "rule_set": [
+                    "geosite-category-entertainment",
+                    "geosite-google",
+                    "geosite-telegram",
+                    "geosite-whatsapp",
+                    "geosite-twitter"
+                ],
+                "action": "route",
+                "server": "dns-remote"
+            },
+            {
+                "rule_set": [
+                    "geosite-cn"
+                ],
+                "action": "route",
+                "server": "dns-direct"
+            },
+            {
+                "inbound": "tun-in",
+                "server": "dns-fake"
+            }
+        ],
+        "final": "dns-direct",
+        "reverse_mapping": true,
+        "disable_cache": false,
+        "disable_expire": false
+    },
+    "inbounds": [
+        {
+            "type": "tun",
+            "tag": "tun-in",
+            "address": [
+                "172.16.0.1/30",
+                "fd00::1/126"
+            ],
+            "mtu": 1492,
+            "auto_route": true,
+            "strict_route": true,
+            "stack": "gvisor"
+        }
+    ],
+    "route": {
+        "auto_detect_interface": true,
+        "final": "proxy",
+        "rules": [
+            {
+                "inbound": "tun-in",
+                "action": "sniff",
+                "sniffer": [
+                    "dns",
+                    "bittorrent",
+                    "http",
+                    "tls",
+                    "quic",
+                    "dtls"
+                ]
+            },
+            {
+                "protocol": "dns",
+                "action": "hijack-dns"
+            },
+            {
+                "process_name": [
+                    "xray.exe",
+                    "hysteria.exe"
+                ],
+                "action": "route",
+                "outbound": "direct"
+            },
+            {
+                "port": 853,
+                "network": "tcp",
+                "action": "reject"
+            },
+            {
+                "port": 443,
+                "network": "udp",
+                "action": "reject"
+            },
+            {
+                "rule_set": "geosite-category-ads-all",
+                "outbound": "Category-ads-all"
+            },
+            {
+                "rule_set": [
+                    "geoip-private",
+                    "geosite-private"
+                ],
+                "action": "route",
+                "outbound": "direct"
+            },
+            {
+                "rule_set": "geosite-adguard",
+                "action": "route",
+                "outbound": "Adguard"
+            },
+            {
+                "rule_set": [
+                    "geoip-apple",
+                    "geosite-apple"
+                ],
+                "action": "route",
+                "outbound": "Apple"
+            },
+            {
+                "rule_set": "geosite-youtube",
+                "action": "route",
+                "outbound": "Youtube"
+            },
+            {
+                "rule_set": "geosite-openai",
+                "action": "route",
+                "outbound": "OpenAI"
+            },
+            {
+                "rule_set": "geosite-anthropic",
+                "action": "route",
+                "outbound": "Anthropic"
+            },
+            {
+                "rule_set": [
+                    "geosite-microsoft",
+                    "geosite-bing",
+                    "geosite-onedrive"
+                ],
+                "action": "route",
+                "outbound": "Microsoft"
+            },
+            {
+                "rule_set": [
+                    "geoip-netflix",
+                    "geosite-netflix"
+                ],
+                "action": "route",
+                "outbound": "Netflix"
+            },
+            {
+                "rule_set": "geosite-category-entertainment",
+                "action": "route",
+                "outbound": "geosite-category-entertainment"
+            },
+            {
+                "rule_set": [
+                    "geosite-google",
+                    "geoip-google",
+                    "geosite-github"
+                ],
+                "action": "route",
+                "outbound": "Google"
+            },
+            {
+                "rule_set": "geoip-cloudflare",
+                "action": "route",
+                "outbound": "Cloudflare"
+            },
+            {
+                "rule_set": "geosite-aws",
+                "action": "route",
+                "outbound": "Aws"
+            },
+            {
+                "rule_set": "geosite-azure",
+                "action": "route",
+                "outbound": "Azure"
+            },
+            {
+                "rule_set": "geosite-amazon",
+                "action": "route",
+                "outbound": "Amazon"
+            },
+            {
+                "rule_set": "geosite-disney",
+                "action": "route",
+                "outbound": "Disney+"
+            },
+            {
+                "rule_set": [
+                    "geosite-hbo",
+                    "geosite-primevideo"
+                ],
+                "action": "route",
+                "outbound": "steam"
+            },
+            {
+                "rule_set": [
+                    "geoip-twitter",
+                    "geosite-twitter"
+                ],
+                "action": "route",
+                "outbound": "Twitter"
+            },
+            {
+                "rule_set": [
+                    "geosite-facebook",
+                    "geoip-facebook"
+                ],
+                "action": "route",
+                "outbound": "Facebook"
+            },
+            {
+                "rule_set": "geoip-telegram",
+                "action": "route",
+                "outbound": "Telegram"
+            },
+            {
+                "rule_set": "geosite-tiktok",
+                "action": "route",
+                "outbound": "TikTok"
+            },
+            {
+                "rule_set": "geosite-spotify",
+                "action": "route",
+                "outbound": "Spotify"
+            },
+            {
+                "rule_set": [
+                    "geosite-category-games",
+                    "geosite-dmm"
+                ],
+                "action": "route",
+                "outbound": "Games"
+            },
+            {
+                "rule_set": "geosite-bahamut",
+                "action": "route",
+                "outbound": "Bahamut"
+            },
+            {
+                "rule_set": "geosite-geolocation-!cn",
+                "action": "route",
+                "outbound": "proxy"
+            },
+            {
+                "rule_set": [
+                    "geoip-cn",
+                    "geosite-cn"
+                ],
+                "action": "route",
+                "outbound": "direct"
+            }
+        ],
+        "rule_set": [
+            {
+                "tag": "geoip-apple",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/apple.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-apple",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-youtube",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-category-entertainment",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/sing/geo/geosite/category-entertainment.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geoip-google",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/google.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-google",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/google.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-github",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/github.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geoip-cloudflare",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cloudflare.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-microsoft",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/microsoft.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-bing",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/bing.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-onedrive",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/onedrive.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-aws",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/aws.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-azure",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/azure.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-amazon",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/amazon.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-disney",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/disney.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geoip-netflix",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/netflix.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-netflix",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/netflix.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geoip-twitter",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/twitter.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-twitter",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-facebook",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/facebook.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geoip-facebook",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/facebook.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-openai",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-anthropic",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/anthropic.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geoip-telegram",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/telegram.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-tiktok",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tiktok.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-spotify",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-category-games",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-games.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-dmm",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dmm.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-bahamut",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/bahamut.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-hbo",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/hbo.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-primevideo",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/primevideo.srs",
+                "download_detour": "direct"
+            },
+            {
+                "type": "remote",
+                "tag": "geosite-geolocation-cn",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-cn.srs",
+                "download_detour": "direct"
+            },
+            {
+                "type": "remote",
+                "tag": "geosite-geolocation-!cn",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
+                "download_detour": "direct"
+            },
+            {
+                "type": "remote",
+                "tag": "geoip-cn",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-adguard",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/adguard.srs",
+                "download_detour": "direct"
+            },
+            {
+                "tag": "geosite-category-ads-all",
+                "type": "remote",
+                "format": "binary",
+                "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-ads-all.srs",
+                "download_detour": "direct"
+            }
+        ]
+    },
+    "outbounds": [
+        {
+            "tag": "direct",
+            "type": "direct"
+        },
+        {
+            "tag": "block",
+            "type": "block"
+        },
+        {
+            "tag": "proxy",
+            "type": "selector",
+            "outbounds": [
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "ipV6",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "ByteTW"
+        },
+        {
+            "tag": "ByteTW",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "byte TW"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "amy[asia]",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "amy HK|amy JP|amy SG|amy TW"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "cream[asia]",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "cream Hk|cream JP|cream SG|cream KR|cream TW"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "US dual-stack",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "dual-stack citrus US|dual-stack xierV6 US"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "TW dual-stack",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "dual-stack citrus TW|dual-stack xierV6 TW|dual-stack byte TW"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "SG dual-stack",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "dual-stack citrus SG|dual-stack xierV6 SG"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "JP dual-stack",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "dual-stack citrus JP|dual-stack xierV6 JP"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "HK dual-stack",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "dual-stack citrus HK|dual-stack xierV6 HK"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "ipV6",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "dual-stack xierV6"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "US IPv4",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "IPV4 amy US|IPV4 cream US"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "TW IPv4",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "IPV4 amy TW|IPV4 cream TW"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "JP IPv4",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "IPV4 amy JP|IPV4 cream JP"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "SG IPv4",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "IPV4 amy SG|IPV4 cream SG"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "HK IPv4",
+            "type": "urltest",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "include",
+                    "keywords": [
+                        "IPV4 amy HK|IPV4 cream HK"
+                    ]
+                }
+            ],
+            "url": "https://www.youtube.com/generate_204",
+            "interval": "3m",
+            "tolerance": 50
+        },
+        {
+            "tag": "Google",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "proxy"
+        },
+        {
+            "tag": "Cloudflare",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "proxy"
+        },
+        {
+            "tag": "Apple",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Netflix",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "TW dual-stack"
+        },
+        {
+            "tag": "OpenAI",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Anthropic",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Microsoft",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "TW IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Youtube",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Twitter",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "ByteTW"
+        },
+        {
+            "tag": "Facebook",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "ByteTW"
+        },
+        {
+            "tag": "Aws",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Azure",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Amazon",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "BiliBili",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "appleCN",
+            "type": "selector",
+            "outbounds": [
+                "direct",
+                "block"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "Disney+",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "proxy"
+        },
+        {
+            "tag": "paypal",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Telegram",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "ByteTW"
+        },
+        {
+            "tag": "TikTok",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "JP dual-stack"
+        },
+        {
+            "tag": "Spotify",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "US dual-stack"
+        },
+        {
+            "tag": "Games",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "Adguard",
+            "type": "selector",
+            "outbounds": [
+                "block",
+                "direct"
+            ]
+        },
+        {
+            "tag": "Category-ads-all",
+            "type": "selector",
+            "outbounds": [
+                "block",
+                "direct"
+            ]
+        },
+        {
+            "tag": "Bahamut",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ]
+        },
+        {
+            "tag": "steam",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "googleFCM",
+            "type": "selector",
+            "outbounds": [
+                "proxy",
+                "ByteTW",
+                "US dual-stack",
+                "TW dual-stack",
+                "SG dual-stack",
+                "JP dual-stack",
+                "HK dual-stack",
+                "US IPv4",
+                "TW IPv4",
+                "JP IPv4",
+                "SG IPv4",
+                "Other IPv4/IPv6",
+                "direct"
+            ],
+            "default": "direct"
+        },
+        {
+            "tag": "Other IPv4/IPv6",
+            "type": "selector",
+            "outbounds": [
+                "{all}"
+            ],
+            "filter": [
+                {
+                    "action": "exclude",
+                    "keywords": [
+                        "美国|🇺🇸|US|台湾|tw|TW|🇨🇳|日本|JP|🇯🇵|HK|香港|🇭🇰|新加坡|SG|🇸🇬|狮|Panel|订阅|流量|重置|ISP|到期|%"
+                    ]
+                }
+            ]
+        }
+    ]
+}
