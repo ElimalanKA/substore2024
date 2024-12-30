@@ -78,17 +78,6 @@
       {
         "inbound": "tun-in",
         "server": "dns-fake"
-      },
-      {
-        "query_type": [
-          "A",
-          "AAAA",
-          "CNAME"
-        ],
-        "invert": true,
-        "server": "dns_refused",
-        "action": "route-options",
-        "disable_cache": true
       }
     ],
     "final": "dns-direct",
