@@ -527,774 +527,780 @@
       }
     ]
   },
-         {
-            "tag": "proxy",
-            "type": "selector",
-            "outbounds": [
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "ipV6",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "ByteTW"
-        },
+  "outbounds": [
+    {
+      "type": "direct",
+      "udp_fragment": true,
+      "tag": "direct"
+    },
+    {
+      "tag": "proxy",
+      "type": "selector",
+      "outbounds": [
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "ipV6",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "ByteTW"
+    },
+    {
+      "tag": "ByteTW",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
         {
-            "tag": "ByteTW",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "byte TW"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "amy[asia]",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "amy HK|amy JP|amy SG|amy TW"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "cream[asia]",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "cream Hk|cream JP|cream SG|cream KR|cream TW"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "US dual-stack",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "dual-stack citrus US|dual-stack xierV6 US"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "TW dual-stack",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "dual-stack citrus TW|dual-stack xierV6 TW|dual-stack byte TW"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "SG dual-stack",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "dual-stack citrus SG|dual-stack xierV6 SG"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "JP dual-stack",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "dual-stack citrus JP|dual-stack xierV6 JP"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "HK dual-stack",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "dual-stack citrus HK|dual-stack xierV6 HK"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "ipV6",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "dual-stack xierV6"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "US IPv4",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "IPV4 amy US|IPV4 cream US"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "TW IPv4",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "IPV4 amy TW|IPV4 cream TW"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "JP IPv4",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "IPV4 amy JP|IPV4 cream JP"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "SG IPv4",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "IPV4 amy SG|IPV4 cream SG"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "HK IPv4",
-            "type": "urltest",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "include",
-                    "keywords": [
-                        "IPV4 amy HK|IPV4 cream HK"
-                    ]
-                }
-            ],
-            "url": "https://www.youtube.com/generate_204",
-            "interval": "3m",
-            "tolerance": 50
-        },
-        {
-            "tag": "Google",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "proxy"
-        },
-        {
-            "tag": "Cloudflare",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "proxy"
-        },
-        {
-            "tag": "Apple",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Netflix",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "TW dual-stack"
-        },
-        {
-            "tag": "OpenAI",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Anthropic",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Microsoft",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "JP IPv4",
-                "TW IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Youtube",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Twitter",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "ByteTW"
-        },
-        {
-            "tag": "Facebook",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "ByteTW"
-        },
-        {
-            "tag": "Aws",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Azure",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Amazon",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "BiliBili",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "appleCN",
-            "type": "selector",
-            "outbounds": [
-                "direct",
-                "block"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "Disney+",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "proxy"
-        },
-        {
-            "tag": "paypal",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Telegram",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "ByteTW"
-        },
-        {
-            "tag": "TikTok",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "JP dual-stack"
-        },
-        {
-            "tag": "Spotify",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "US dual-stack"
-        },
-        {
-            "tag": "Games",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "Adguard",
-            "type": "selector",
-            "outbounds": [
-                "block",
-                "direct"
-            ]
-        },
-        {
-            "tag": "Category-ads-all",
-            "type": "selector",
-            "outbounds": [
-                "block",
-                "direct"
-            ]
-        },
-        {
-            "tag": "Bahamut",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ]
-        },
-        {
-            "tag": "steam",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "googleFCM",
-            "type": "selector",
-            "outbounds": [
-                "proxy",
-                "ByteTW",
-                "US dual-stack",
-                "TW dual-stack",
-                "SG dual-stack",
-                "JP dual-stack",
-                "HK dual-stack",
-                "US IPv4",
-                "TW IPv4",
-                "JP IPv4",
-                "SG IPv4",
-                "Other IPv4/IPv6",
-                "direct"
-            ],
-            "default": "direct"
-        },
-        {
-            "tag": "Other IPv4/IPv6",
-            "type": "selector",
-            "outbounds": [
-                "{all}"
-            ],
-            "filter": [
-                {
-                    "action": "exclude",
-                    "keywords": [
-                        "美国|🇺🇸|US|台湾|tw|TW|🇨🇳|日本|JP|🇯🇵|HK|香港|🇭🇰|新加坡|SG|🇸🇬|狮|Panel|订阅|流量|重置|ISP|到期|%"
-                    ]
-                }
-            ]
+          "action": "include",
+          "keywords": [
+            "byte TW"
+          ]
         }
-    ]
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "amy[asia]",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "amy HK|amy JP|amy SG|amy TW"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "cream[asia]",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "cream Hk|cream JP|cream SG|cream KR|cream TW"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "US dual-stack",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "dual-stack citrus US|dual-stack xierV6 US"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "TW dual-stack",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "dual-stack citrus TW|dual-stack xierV6 TW|dual-stack byte TW"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "SG dual-stack",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "dual-stack citrus SG|dual-stack xierV6 SG"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "JP dual-stack",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "dual-stack citrus JP|dual-stack xierV6 JP"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "HK dual-stack",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "dual-stack citrus HK|dual-stack xierV6 HK"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "ipV6",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "dual-stack xierV6"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "US IPv4",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "IPV4 amy US|IPV4 cream US"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "TW IPv4",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "IPV4 amy TW|IPV4 cream TW"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "JP IPv4",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "IPV4 amy JP|IPV4 cream JP"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "SG IPv4",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "IPV4 amy SG|IPV4 cream SG"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "HK IPv4",
+      "type": "urltest",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": [
+            "IPV4 amy HK|IPV4 cream HK"
+          ]
+        }
+      ],
+      "url": "https://www.youtube.com/generate_204",
+      "interval": "3m",
+      "tolerance": 50
+    },
+    {
+      "tag": "Google",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "Cloudflare",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "Apple",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Netflix",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "TW dual-stack"
+    },
+    {
+      "tag": "OpenAI",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Anthropic",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Microsoft",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "JP IPv4",
+        "TW IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Youtube",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Twitter",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "ByteTW"
+    },
+    {
+      "tag": "Facebook",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "ByteTW"
+    },
+    {
+      "tag": "Aws",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Azure",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Amazon",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "BiliBili",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "appleCN",
+      "type": "selector",
+      "outbounds": [
+        "direct",
+        "block"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Disney+",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "proxy"
+    },
+    {
+      "tag": "paypal",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Telegram",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "ByteTW"
+    },
+    {
+      "tag": "TikTok",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "JP dual-stack"
+    },
+    {
+      "tag": "Spotify",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "US dual-stack"
+    },
+    {
+      "tag": "Games",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Adguard",
+      "type": "selector",
+      "outbounds": [
+        "block",
+        "direct"
+      ]
+    },
+    {
+      "tag": "Category-ads-all",
+      "type": "selector",
+      "outbounds": [
+        "block",
+        "direct"
+      ]
+    },
+    {
+      "tag": "Bahamut",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ]
+    },
+    {
+      "tag": "steam",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "googleFCM",
+      "type": "selector",
+      "outbounds": [
+        "proxy",
+        "ByteTW",
+        "US dual-stack",
+        "TW dual-stack",
+        "SG dual-stack",
+        "JP dual-stack",
+        "HK dual-stack",
+        "US IPv4",
+        "TW IPv4",
+        "JP IPv4",
+        "SG IPv4",
+        "Other IPv4/IPv6",
+        "direct"
+      ],
+      "default": "direct"
+    },
+    {
+      "tag": "Other IPv4/IPv6",
+      "type": "selector",
+      "outbounds": [
+        "{all}"
+      ],
+      "filter": [
+        {
+          "action": "exclude",
+          "keywords": [
+            "美国|🇺🇸|US|台湾|tw|TW|🇨🇳|日本|JP|🇯🇵|HK|香港|🇭🇰|新加坡|SG|🇸🇬|狮|Panel|订阅|流量|重置|ISP|到期|%"
+          ]
+        }
+      ]
+    }
+  ]
 }
