@@ -274,28 +274,32 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo-lite/geoip/apple.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-apple",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/apple.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-youtube",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/youtube.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geoip-google",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/google.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-google",
@@ -309,42 +313,48 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/github.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geoip-cloudflare",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cloudflare.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-microsoft",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/microsoft.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-bing",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/bing.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-onedrive",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/onedrive.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-aws",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/aws.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-azure",
@@ -358,21 +368,24 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/amazon.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-disney",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/disney.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geoip-netflix",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/netflix.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-netflix",
@@ -386,133 +399,152 @@
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/twitter.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-twitter",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/twitter.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-facebook",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/facebook.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geoip-facebook",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/facebook.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-openai",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/openai.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-anthropic",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/anthropic.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geoip-telegram",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/telegram.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-tiktok",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/tiktok.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-spotify",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/spotify.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-category-games",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-games.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-dmm",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/dmm.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-bahamut",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/bahamut.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-hbo",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/hbo.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-primevideo",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/primevideo.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "type": "remote",
         "tag": "geosite-geolocation-cn",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-cn.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "type": "remote",
         "tag": "geosite-geolocation-!cn",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/geolocation-!cn.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "type": "remote",
         "tag": "geoip-cn",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geoip/cn.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-adguard",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/adguard.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       },
       {
         "tag": "geosite-category-ads-all",
         "type": "remote",
         "format": "binary",
         "url": "https://ghproxy.net/https://github.com/MetaCubeX/meta-rules-dat/raw/sing/geo/geosite/category-ads-all.srs",
-        "download_detour": "direct"
+        "download_detour": "direct",
+        "update_interval": "3d"
       }
     ]
   },
