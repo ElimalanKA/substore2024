@@ -6,7 +6,7 @@
     },
     "experimental": {
         "clash_api": {
-            "external_controller": "192.168.2.248:9090",
+            "external_controller": "127.0.0.1:9090",
             "external_ui": "/etc/sing-box/ui",
             "external_ui_download_url": "",
             "external_ui_download_detour": "",
@@ -1124,7 +1124,7 @@
             "type": "selector",
             "outbounds": [
                 "direct",
-                "block"
+                "proxy"
             ],
             "default": "direct"
         },
@@ -1247,22 +1247,6 @@
                 "direct"
             ],
             "default": "direct"
-        },
-        {
-            "tag": "Adguard",
-            "type": "selector",
-            "outbounds": [
-                "block",
-                "direct"
-            ]
-        },
-        {
-            "tag": "Category-ads-all",
-            "type": "selector",
-            "outbounds": [
-                "block",
-                "direct"
-            ]
         },
         {
             "tag": "Bahamut",
