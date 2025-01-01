@@ -1,64 +1,25 @@
-{
-    "log": {
-        "disabled": false,
-        "level": "debug",
-        "timestamp": true
-    },
-    "experimental": {
-        "clash_api": {
-            "external_controller": "127.0.0.1:9090",
-            "external_ui": "/etc/sing-box/ui",
-            "external_ui_download_url": "",
-            "external_ui_download_detour": "",
-            "default_mode": "rule"
-        },
-        "cache_file": {
-            "enabled": true,
-            "path": "/etc/sing-box/cache.db",
-            "store_fakeip": true
-        }
-    },
-    "dns": {
-        "fakeip": {
-            "enabled": true,
-            "inet4_range": "198.18.0.0/15",
-            "inet6_range": "fc00::/18"
-        },
-        "servers": [
-            {
-                "address": "https://dns.google/dns-query",
-                "address_resolver": "dns-local",
-                "detour": "proxy",
-                "tag": "dns-remote"
+
+                    "03147c.hdcvoz.xyz",
+                    "760849.tplpcq.xyz"
+                ],
+                "domain_keyword": [],
+                "domain_regex": [
+                    "^(.+\\.)?(apple|icloud)\\.[a-z]{2,}$"
+                ],
+                "domain_suffix": [
+                    "cn",
+                    "top",
+                    "xyz"
+                ],
+                "server": "dns-direct"
             },
             {
-                "address": "https://dns.alidns.com/dns-query",
-                "address_resolver": "dns-local",
-                "detour": "direct",
-                "tag": "dns-direct"
-            },
-            {
-                "address": "192.168.2.1",
-                "detour": "direct",
-                "tag": "dns-local"
-            },
-            {
-                "tag": "dns_success",
-                "address": "rcode://success"
-            },
-            {
-                "tag": "dns_refused",
-                "address": "rcode://refused"
-            },
-            {
-                "address": "fakeip",
-                "tag": "dns-fake"
-            }
-        ],
-        "rules": [
-            {
-                "outbound": "any",
-                "server": "dns-local"
+                "query_type": [
+                    33,
+                    64,
+                    65
+                ],
+                "server": "dns-refused"
             },
             {
                 "rule_set": [
@@ -70,36 +31,25 @@
                 "no_drop": false
             },
             {
-                "rule_set": "geosite-geolocation-!cn",
-                "query_type": [
-                    "A",
-                    "AAAA"
-                ],
+                "domain_suffix": ".lan",
+                "server": "dns-refused"
+            },
+            {
+                "inbound": "tun-in",
                 "server": "dns-fake"
-            },
-            {
-                "rule_set": "geosite-geolocation-!cn",
-                "query_type": [
-                    "CNAME"
-                ],
-                "server": "dns-remote"
-            },
-            {
-                "query_type": [
-                    "A",
-                    "AAAA",
-                    "CNAME"
-                ],
-                "invert": true,
-                "server": "dns_refused",
-                "action": "route-options",
-                "disable_cache": true
             }
         ],
         "final": "dns-direct",
-        "independent_cache": true
+        "independent_cache": false
     },
     "inbounds": [
+        {
+            "tag": "mixed-in",
+            "type": "mixed",
+            "domain_strategy": "",
+            "listen": "::",
+            "listen_port": 2080
+        },
         {
             "type": "tun",
             "tag": "tun-in",
@@ -118,6 +68,10 @@
         "final": "proxy",
         "rules": [
             {
+                "inbound": "mixed-in",
+                "action": "sniff"
+            },
+            {
                 "inbound": "tun-in",
                 "action": "sniff"
             },
@@ -131,25 +85,6 @@
                 ],
                 "action": "route",
                 "outbound": "direct"
-            },
-            {
-                "rule_set": [
-                    "geosite-category-ads-all",
-                    "geosite-adguard"
-                ],
-                "action": "reject",
-                "method": "default",
-                "no_drop": false
-            },
-            {
-                "port": 853,
-                "network": "tcp",
-                "action": "reject"
-            },
-            {
-                "port": 443,
-                "network": "udp",
-                "action": "reject"
             },
             {
                 "ip_is_private": true,
