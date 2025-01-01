@@ -1,4 +1,69 @@
-
+{
+    "log": {
+        "disabled": false,
+        "level": "debug",
+        "timestamp": true
+    },
+    "experimental": {
+        "clash_api": {
+            "external_controller": "192.168.2.248:9090",
+            "external_ui": "/etc/sing-box/ui",
+            "external_ui_download_url": "",
+            "external_ui_download_detour": "",
+            "default_mode": "rule"
+        },
+        "cache_file": {
+            "enabled": true,
+            "path": "/etc/sing-box/cache.db",
+            "store_fakeip": true
+        }
+    },
+    "dns": {
+        "fakeip": {
+            "enabled": true,
+            "inet4_range": "198.18.0.0/15",
+            "inet6_range": "fc00::/18"
+        },
+        "servers": [
+            {
+                "address": "https://dns.google/dns-query",
+                "address_resolver": "dns-local",
+                "detour": "proxy",
+                "tag": "dns-remote"
+            },
+            {
+                "address": "https://dns.alidns.com/dns-query",
+                "address_resolver": "dns-local",
+                "detour": "direct",
+                "tag": "dns-direct"
+            },
+            {
+                "address": "192.168.2.1",
+                "detour": "direct",
+                "tag": "dns-local"
+            },
+            {
+                "tag": "dns-success",
+                "address": "rcode://success"
+            },
+            {
+                "tag": "dns-refused",
+                "address": "rcode://refused"
+            },
+            {
+                "address": "fakeip",
+                "tag": "dns-fake"
+            }
+        ],
+        "rules": [
+            {
+                "outbound": "any",
+                "server": "dns-direct"
+            },
+            {
+                "domain": [
+                    "skk.moe",
+                    "8cc.free.hr",
                     "03147c.hdcvoz.xyz",
                     "760849.tplpcq.xyz"
                 ],
